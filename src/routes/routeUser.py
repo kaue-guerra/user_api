@@ -8,6 +8,16 @@ from src.routes.auth_utils import get_user_logged
 
 router = APIRouter()
 
+@router.get('/')
+async def welcome():
+    return {'message': {
+        'description': 'API Cadastro de Usuário - DESAFIO PONTO TEL',
+        'author': {
+            'name': 'Kaue Guerra',
+            'email': 'kaueguerra@gmail.com'
+        }
+    }}
+
 
 @router.get('/users', status_code=status.HTTP_200_OK, response_model=UserNoPassword)
 async def index(session: Session = Depends(get_db), user: User = Depends(get_user_logged)):
